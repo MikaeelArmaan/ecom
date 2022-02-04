@@ -23,7 +23,7 @@ class Product(models.Model):
     _id = models.AutoField(primary_key=True, editable=False)
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
 
 class Review(models.Model):
@@ -34,8 +34,8 @@ class Review(models.Model):
     comment = models.TextField(null=True, blank=True)
     _id = models.AutoField(primary_key=True, editable=False)
 
-    def __str__(self) -> str:
-        return super(selft.rating).__str__()
+    def __str__(self):
+        return str(self.product)
 
 
 class Order(models.Model):
@@ -55,8 +55,8 @@ class Order(models.Model):
     createdAt = models.DateTimeField(auto_now_add=True)
     _id = models.AutoField(primary_key=True, editable=False)
 
-    def __str__(self) -> str:
-        return super(self.createdAt).__str__()
+    def __str__(self):
+        return str(self._id)
 
 
 class OrderItem(models.Model):
@@ -69,14 +69,14 @@ class OrderItem(models.Model):
     image = models.CharField(max_length=200, null=True, blank=True)
     _id = models.AutoField(primary_key=True, editable=False)
 
-    def __str__(self) -> str:
-        return super(self.name).__str__()
+    def __str__(self):
+        return str(self.name)
 
 
 class ShippingAddress(models.Model):
-    Order = models.OneToOneField(
+    order = models.OneToOneField(
         Order, on_delete=models.CASCADE, null=True, blank=True)
-    address =models.CharField(max_length=200,null=True,blank=True)
+    address = models.CharField(max_length=200, null=True, blank=True)
     city = models.CharField(max_length=200, null=True, blank=True)
     postalCode = models.CharField(max_length=200, null=True, blank=True)
     country = models.CharField(max_length=200, null=True, blank=True)
@@ -84,5 +84,5 @@ class ShippingAddress(models.Model):
         max_digits=7, decimal_places=2, null=True, blank=True)
     _id = models.AutoField(primary_key=True, editable=False)
 
-    def __str__(self) -> str:
-         return super(self.address).__str__()
+    def __str__(self):
+        return str(self.address)
